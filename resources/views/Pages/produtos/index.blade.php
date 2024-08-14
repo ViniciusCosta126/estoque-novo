@@ -12,7 +12,7 @@
         </button>
     </div>
     <div class="table-responsive card shadow">
-        <input class="form-control mb-2" id="tableSearch" type="text" placeholder="Buscar na Tabela">
+        <input class="form-control mb-2" id="tableSearch" type="text" placeholder="Buscar na Tabela pelo nome">
         <table class="table">
             <thead class="table-dark">
                 <tr class="text-light">
