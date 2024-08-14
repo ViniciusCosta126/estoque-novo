@@ -17,7 +17,8 @@
             <thead class="table-dark">
                 <tr class="text-light">
                     <th scope="col">ID</th>
-                    <th scope="col">Nome</th>
+                    <th scope="col"><a id="sortName" href="#" class="text-decoration-none text-light">Nome</a>
+                    </th>
                     <th scope="col">Preco</th>
                     <th scope="col">Preco Custo</th>
                     <th scope="col">Quantidade Estoque</th>
@@ -25,7 +26,7 @@
                     <th>Ações</th>
                 </tr>
             </thead>
-            <tbody class="table-group-divider align-middle">
+            <tbody id="productTable" class="table-group-divider align-middle">
                 @foreach ($produtos as $produto)
                     <tr>
                         <th scope="row">
@@ -68,6 +69,19 @@
                     $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
                 });
             });
+        });
+
+        document.getElementById('sortName').addEventListener('click', function() {
+            const table = document.getElementById('productTable');
+            const rows = Array.from(table.querySelectorAll('tr'));
+            const sortedRows = rows.sort((a, b) => {
+                const nameA = a.querySelectorAll('td')[0].textContent.toLowerCase();
+                const nameB = b.querySelectorAll('td')[0].textContent.toLowerCase();
+                return nameA.localeCompare(nameB);
+            });
+
+            // Reordenando as linhas na tabela
+            sortedRows.forEach(row => table.appendChild(row));
         });
     </script>
 </x-layout>

@@ -12,7 +12,7 @@
             <thead class="table-dark">
                 <tr>
                     <th scope="row">ID</th>
-                    <th>Nome</th>
+                    <th><a id="sortName" href="#" class="text-decoration-none text-light">Nome</a></th>
                     <th>CPF</th>
                     <th>Email</th>
                     <th>Telefone</th>
@@ -22,7 +22,7 @@
                     <th>Ações</th>
                 </tr>
             </thead>
-            <tbody class="table-group-divider align-middle">
+            <tbody id="clienteTable" class="table-group-divider align-middle">
                 @foreach ($clientes as $cliente)
                     <tr>
                         <td>{{ $cliente->id }}</td>
@@ -60,6 +60,19 @@
                     $(this).toggle(rowText.includes(value));
                 });
             });
+        });
+
+        document.getElementById('sortName').addEventListener('click', function() {
+            const table = document.getElementById('clienteTable');
+            const rows = Array.from(table.querySelectorAll('tr'));
+            const sortedRows = rows.sort((a, b) => {
+                const nameA = a.querySelectorAll('td')[1].textContent.toLowerCase();
+                const nameB = b.querySelectorAll('td')[1].textContent.toLowerCase();
+                return nameA.localeCompare(nameB);
+            });
+
+            // Reordenando as linhas na tabela
+            sortedRows.forEach(row => table.appendChild(row));
         });
     </script>
 </x-layout>
