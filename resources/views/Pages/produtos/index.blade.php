@@ -12,13 +12,14 @@
         </button>
     </div>
     <input class="form-control mb-2" id="tableSearch" type="text" placeholder="Buscar na Tabela pelo nome">
-    <div class="table-responsive card shadow h-50">
-        <table class="table">
+    <div class="table-responsive card shadow h-75">
+        <table class="table min-vw-100">
             <thead class="table-dark">
                 <tr class="text-light">
                     <th scope="col">ID</th>
                     <th scope="col"><a id="sortName" href="#" class="text-decoration-none text-light">Nome</a>
                     </th>
+                    <th scope="col">Descricao</th>
                     <th scope="col">Preco</th>
                     <th scope="col">Preco Custo</th>
                     <th scope="col">Quantidade Estoque</th>
@@ -34,9 +35,9 @@
                                 class="text-dark link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover">
                                 {{ $produto->id }}
                             </a>
-
                         </th>
                         <td>{{ $produto->nome }}</td>
+                        <td>{{ $produto->descricao }}</td>
                         <td>{{ \App\Helpers\ProdutoHelper::formatCurrency($produto->preco) }}</td>
                         <td>{{ \App\Helpers\ProdutoHelper::formatCurrency($produto->preco_custo) }}</td>
                         <td>{{ $produto->qtd_estoque }}</td>

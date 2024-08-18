@@ -6,9 +6,9 @@
     @endif
     <h2 class="h1">Clientes</h2>
     <button class="btn btn-success mb-2" data-bs-toggle="modal" data-bs-target="#criarCliente">Incluir Cliente</button>
-    <div class="card table-responsive shadow">
-        <input class="form-control mb-2" id="tableSearch" type="text" placeholder="Buscar na Tabela pelo nome">
-        <table class="table">
+    <input class="form-control mb-2" id="tableSearch" type="text" placeholder="Buscar na Tabela pelo nome">
+    <div class="card table-responsive shadow h-75">
+        <table class="table  min-vw-100">
             <thead class="table-dark">
                 <tr>
                     <th scope="row">ID</th>
@@ -27,7 +27,7 @@
                     <tr>
                         <td>{{ $cliente->id }}</td>
                         <td>{{ $cliente->nome }}</td>
-                        <td>{{ $cliente->cpf }}</td>
+                        <td class="w-auto">{{ $cliente->cpf }}</td>
                         <td>{{ $cliente->email }}</td>
                         <td>{{ $cliente->telefone }}</td>
                         <td>{{ $cliente->endereco }}</td>
