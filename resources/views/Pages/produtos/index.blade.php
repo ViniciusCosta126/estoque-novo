@@ -11,8 +11,8 @@
             Produto
         </button>
     </div>
-    <div class="table-responsive card shadow">
-        <input class="form-control mb-2" id="tableSearch" type="text" placeholder="Buscar na Tabela pelo nome">
+    <input class="form-control mb-2" id="tableSearch" type="text" placeholder="Buscar na Tabela pelo nome">
+    <div class="table-responsive card shadow h-50">
         <table class="table">
             <thead class="table-dark">
                 <tr class="text-light">
@@ -37,8 +37,8 @@
 
                         </th>
                         <td>{{ $produto->nome }}</td>
-                        <td>R${{ number_format((float) $produto->preco, 2) }}</td>
-                        <td>R${{ number_format((float) $produto->preco_custo, 2) }}</td>
+                        <td>{{ \App\Helpers\ProdutoHelper::formatCurrency($produto->preco) }}</td>
+                        <td>{{ \App\Helpers\ProdutoHelper::formatCurrency($produto->preco_custo) }}</td>
                         <td>{{ $produto->qtd_estoque }}</td>
                         <td>{{ $produto->qtd_minima }}</td>
                         <td class="d-flex">
