@@ -57,9 +57,11 @@
                     @include('Pages.produtos.modal.modal-editar-produto', ['produto' => $produto])
                     @include('Pages.produtos.modal.modal-show-produto', ['produto' => $produto])
                 @endforeach
-
             </tbody>
         </table>
+        <div class="d-flex gap-2 justify-content-center mt-3">
+            {{ $produtos->links('pagination::bootstrap-5') }}
+        </div>
     </div>
     @include('Pages.produtos.modal.modal-criar-produto')
     <script>

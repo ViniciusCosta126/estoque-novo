@@ -10,7 +10,7 @@ class ClienteController extends Controller
     public function index(Request $request)
     {
         $mensagemSucesso = $request->session()->get("mensagem.sucesso");
-        $clientes = Cliente::all();
+        $clientes = Cliente::paginate(10);
         return view('Pages.clientes.index')->with('clientes', $clientes)->with("mensagemSucesso", $mensagemSucesso);
     }
 

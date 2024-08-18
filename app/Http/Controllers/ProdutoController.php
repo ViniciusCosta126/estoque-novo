@@ -10,7 +10,7 @@ class ProdutoController extends Controller
     public function index(Request $request)
     {
         $mensagemSucesso = $request->session()->get("mensagem.sucesso");
-        $produtos = Produto::all();
+        $produtos = Produto::paginate(10);
         return view('pages.produtos.index')->with("mensagemSucesso", $mensagemSucesso)->with('produtos', $produtos);
     }
 

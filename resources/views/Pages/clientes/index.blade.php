@@ -49,6 +49,9 @@
                 @endforeach
             </tbody>
         </table>
+        <div class="d-flex gap-2 justify-content-center mt-3">
+            {{ $clientes->links('pagination::bootstrap-5') }}
+        </div>
     </div>
     @include('Pages.clientes.modal.modal-criar-cliente')
     <script>
