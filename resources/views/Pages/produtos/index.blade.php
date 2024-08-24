@@ -13,13 +13,12 @@
     </div>
     <input class="form-control mb-2" id="tableSearch" type="text" placeholder="Buscar na Tabela pelo nome">
     <div class="table-responsive card shadow h-75">
-        <table class="table min-vw-100">
+        <table class="table">
             <thead class="table-dark">
                 <tr class="text-light">
                     <th scope="col">ID</th>
                     <th scope="col"><a id="sortName" href="#" class="text-decoration-none text-light">Nome</a>
                     </th>
-                    <th scope="col">Descricao</th>
                     <th scope="col">Preco</th>
                     <th scope="col">Preco Custo</th>
                     <th scope="col">Quantidade Estoque</th>
@@ -29,7 +28,7 @@
             </thead>
             <tbody id="productTable" class="table-group-divider align-middle">
                 @foreach ($produtos as $produto)
-                    <tr>
+                    <tr class="{{ $produto->qtd_estoque < $produto->qtd_minima ? 'table-danger' : '' }}">
                         <th scope="row">
                             <a data-bs-toggle="modal" data-bs-target="#showModal{{ $produto->id }}"
                                 class="text-dark link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover">
@@ -37,7 +36,6 @@
                             </a>
                         </th>
                         <td>{{ $produto->nome }}</td>
-                        <td>{{ $produto->descricao }}</td>
                         <td>{{ \App\Helpers\ProdutoHelper::formatCurrency($produto->preco) }}</td>
                         <td>{{ \App\Helpers\ProdutoHelper::formatCurrency($produto->preco_custo) }}</td>
                         <td>{{ $produto->qtd_estoque }}</td>

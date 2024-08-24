@@ -2,7 +2,7 @@
 
 <div class="modal fade" id="editModal{{ $produto->id }}" role="dialog" aria-labelledby="editModalLabel{{ $produto->id }}"
     aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header ">
                 <h5 class="modal-title" id="editModalLabel{{ $produto->id }}">Editar Produto</h5>
@@ -40,7 +40,7 @@
                         <input type="number" class="form-control" id="qtd_minima" name="qtd_minima"
                             value="{{ $produto->qtd_minima }}">
                     </div>
-                    <button type="submit" class="btn mt-2 btn-primary">Salvar</button>
+                    <button type="submit" class="btn mt-2 col-md-4 btn-success">Salvar</button>
                 </form>
             </div>
         </div>

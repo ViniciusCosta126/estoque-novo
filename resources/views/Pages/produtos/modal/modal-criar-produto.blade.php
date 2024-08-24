@@ -36,7 +36,7 @@
                         <input type="number" class="form-control" {{ old('qtd_minima') }} name="qtd_minima"
                             id="qtd_minima">
                     </div>
-                    <button type="submit" class="btn col-md-4 btn-primary mt-2">Incluir Produto</button>
+                    <button type="submit" class="btn col-md-4 btn-success mt-2">Incluir Produto</button>
                 </form>
             </div>
         </div>
