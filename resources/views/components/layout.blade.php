@@ -8,17 +8,28 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <title>{{ $title ?? 'Teste Pagina' }}</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    @vite(['resources/js/app.js'])
+    @vite(['resources/js/app.js', 'resources/css/app.css'])
 </head>
 
 <body class="min-vh-100 ">
     <x-NavBar.navbar />
-    <div class="bg-light vh-100 pt-4">
-        <div class="container-lg h-100">
+    <div class="home-section bg-light vh-100 pt-2">
+        <div class="home-content vh-100 ">
+            <div>
+                <i class="fa-solid fa-bars"></i>
+            </div>
             {{ $slot }}
         </div>
-    </div>
 
+    </div>
+    <script>
+        let sidebar = document.querySelector(".sidebar");
+        let sidebarBtn = document.querySelector(".fa-bars");
+        console.log(sidebarBtn);
+        sidebarBtn.addEventListener("click", () => {
+            sidebar.classList.toggle("close");
+        });
+    </script>
 </body>
 
 </html>
