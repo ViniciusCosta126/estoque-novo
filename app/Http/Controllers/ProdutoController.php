@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Categoria;
 use App\Models\Produto;
 use Illuminate\Http\Request;
 
@@ -9,9 +10,10 @@ class ProdutoController extends Controller
 {
     public function index(Request $request)
     {
+        $categorias = Categoria::all();
         $mensagemSucesso = $request->session()->get("mensagem.sucesso");
         $produtos = Produto::paginate(10);
-        return view('pages.produtos.index')->with("mensagemSucesso", $mensagemSucesso)->with('produtos', $produtos);
+        return view('pages.produtos.index')->with("mensagemSucesso", $mensagemSucesso)->with('produtos', $produtos)->with("categorias", $categorias);
     }
 
     public function store(Request $request)

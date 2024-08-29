@@ -1,16 +1,16 @@
 <x-layout title="Produtos">
     <div class="mt-4">
-        @if ($mensagemSucesso)
+        @isset($mensagemSucesso)
             <div class="alert alert-success">
                 {{ $mensagemSucesso }}
             </div>
-        @endif
+        @endisset
         <h2 class="h1">Produtos</h2>
         <button class="btn btn-success mb-2 col-md-2" data-bs-toggle="modal" data-bs-target="#criarProduto">Incluir novo
             Produto
         </button>
         <input class="form-control mb-2" id="tableSearch" type="text" placeholder="Buscar na Tabela pelo nome">
-        <div class="table-responsive card shadow h-75">
+        <div class="table-responsive card shadow" style="height: 85%">
             <table class="table">
                 <thead class="table-dark">
                     <tr class="text-light">
@@ -18,6 +18,7 @@
                         <th scope="col"><a id="sortName" href="#"
                                 class="text-decoration-none text-light">Nome</a>
                         </th>
+                        <th scope="col">Categoria</th>
                         <th scope="col">Preco</th>
                         <th scope="col">Preco Custo</th>
                         <th scope="col">Margem</th>
@@ -36,6 +37,7 @@
                                 </a>
                             </th>
                             <td>{{ $produto->nome }}</td>
+                            <td>{{ $produto->categoria->nome }}</td>
                             <td>{{ \App\Helpers\ProdutoHelper::formatCurrency($produto->preco) }}</td>
                             <td>{{ \App\Helpers\ProdutoHelper::formatCurrency($produto->preco_custo) }}</td>
                             <td>{{ \App\Helpers\ProdutoHelper::formatPorcentage($produto->preco_custo, $produto->preco) }}
@@ -65,7 +67,7 @@
                 {{ $produtos->links('pagination::bootstrap-5') }}
             </div>
         </div>
-        @include('Pages.produtos.modal.modal-criar-produto')
+        @include('Pages.produtos.modal.modal-criar-produto', ['categorias', $categorias])
     </div>
 
     <script>

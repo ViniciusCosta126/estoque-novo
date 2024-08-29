@@ -1,15 +1,15 @@
 <x-layout title="Clientes">
     <div class="mt-4">
-        @if ($mensagemSucesso)
+        @isset($mensagemSucesso)
             <div class="alert alert-success">
                 {{ $mensagemSucesso }}
             </div>
-        @endif
+        @endisset
         <h2 class="h1">Clientes</h2>
         <button class="btn btn-success mb-2 col-md-2" data-bs-toggle="modal" data-bs-target="#criarCliente">Incluir
             Cliente</button>
         <input class="form-control mb-2" id="tableSearch" type="text" placeholder="Buscar na Tabela pelo nome">
-        <div class="card table-responsive shadow h-75">
+        <div class="card table-responsive shadow " style="height: 85%">
             <table class="table  min-vw-100">
                 <thead class="table-dark">
                     <tr>
