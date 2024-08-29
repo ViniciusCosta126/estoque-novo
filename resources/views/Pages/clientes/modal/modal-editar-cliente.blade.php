@@ -52,7 +52,7 @@
                         </div>
                     </div>
 
-                    <button type="submit" class="btn col-md-4 btn-primary mt-2">Salvar Cliente</button>
+                    <button type="submit" class="btn col-md-4 btn-success mt-2">Salvar Cliente</button>
                 </form>
             </div>
         </div>

@@ -8,6 +8,15 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+//Rotas de produtos
+Route::get('/produtos', [ProdutoController::class, 'index'])->name('produtos.index');
+Route::post('/produtos', [ProdutoController::class, 'store'])->name('produtos.store');
+Route::delete('/produtos/{id}', [ProdutoController::class, 'destroy'])->name('produtos.destroy');
+Route::put('/produtos/{id}', [ProdutoController::class, 'update'])->name('produtos.update');
 
-Route::resource('/produtos', ProdutoController::class)->except(['edit', 'show']);
 Route::resource('/clientes', ClienteController::class)->except(['edit', 'show']);
+
+Route::get('/clientes', [ClienteController::class, 'index'])->name('clientes.index');
+Route::post('/clientes', [ClienteController::class, 'store'])->name('clientes.store');
+Route::delete('/clientes/{id}', [ClienteController::class, 'destroy'])->name('clientes.destroy');
+Route::put('/clientes/{id}', [ClienteController::class, 'update'])->name('clientes.update');

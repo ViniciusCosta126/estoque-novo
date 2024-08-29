@@ -20,6 +20,7 @@
                         </th>
                         <th scope="col">Preco</th>
                         <th scope="col">Preco Custo</th>
+                        <th scope="col">Margem</th>
                         <th scope="col">Quantidade Estoque</th>
                         <th scope="col">Qtd Minima em Estoque</th>
                         <th>Ações</th>
@@ -37,6 +38,8 @@
                             <td>{{ $produto->nome }}</td>
                             <td>{{ \App\Helpers\ProdutoHelper::formatCurrency($produto->preco) }}</td>
                             <td>{{ \App\Helpers\ProdutoHelper::formatCurrency($produto->preco_custo) }}</td>
+                            <td>{{ \App\Helpers\ProdutoHelper::formatPorcentage($produto->preco_custo, $produto->preco) }}
+                            </td>
                             <td>{{ $produto->qtd_estoque }}</td>
                             <td>{{ $produto->qtd_minima }}</td>
                             <td class="d-flex">

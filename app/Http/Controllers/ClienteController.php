@@ -27,9 +27,6 @@ class ClienteController extends Controller
         return to_route('clientes.index')->with('mensagem.sucesso', "Cliente: {$cliente->nome} atualizado com sucesso!!");
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(Cliente $cliente)
     {
         $cliente->delete();

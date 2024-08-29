@@ -16,4 +16,10 @@ class ProdutoHelper
     {
         return $currencySymbol . ' ' . number_format($amount, $decimals, ',', '.');
     }
+
+    public static function formatPorcentage(float $precoCusto, float $preco, int $decimals = 2): string
+    {
+        $val = ((float) $preco) / (float) $precoCusto  * 100;
+        return  number_format($val, $decimals, ',', '.') . '%';
+    }
 }

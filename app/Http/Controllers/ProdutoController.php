@@ -14,26 +14,23 @@ class ProdutoController extends Controller
         return view('pages.produtos.index')->with("mensagemSucesso", $mensagemSucesso)->with('produtos', $produtos);
     }
 
-    public function create()
-    {
-        return view('pages.produtos.create');
-    }
-
     public function store(Request $request)
     {
         $produto = Produto::create($request->all());
         return to_route('produtos.index')->with('mensagem.sucesso', "Produto {$produto->nome} criado com sucesso!!");
     }
 
-    public function update(Request $request, Produto $produto)
+    public function update(Request $request, $id)
     {
+        $produto = Produto::find($id);
         $produto->fill($request->all());
         $produto->save();
         return to_route('produtos.index')->with('mensagem.sucesso', "Produto {$produto->nome} alterado com sucesso!");
     }
 
-    public function destroy(Produto $produto)
+    public function destroy($id)
     {
+        $produto = Produto::find($id);
         $produto->delete();
         return to_route("produtos.index")->with("mensagem.sucesso", "Produto excluido com sucesso!");
     }
