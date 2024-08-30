@@ -1,8 +1,16 @@
 <x-layout title="Clientes">
     <div class="mt-4">
         @isset($mensagemSucesso)
-            <div class="alert alert-success">
-                {{ $mensagemSucesso }}
+            <div class="toast-container position-fixed bottom-0 end-0 p-3">
+                <div id="liveToast" class="toast text-bg-success" role="alert" aria-live="assertive" aria-atomic="true">
+                    <div class="toast-header text-bg-success">
+                        <strong class="me-auto">Nova mensagem do sistema</strong>
+                        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                    </div>
+                    <div class="toast-body">
+                        {{ $mensagemSucesso }}
+                    </div>
+                </div>
             </div>
         @endisset
         <h2 class="h1">Clientes</h2>
@@ -61,6 +69,14 @@
     </div>
 
     <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var toastEl = document.getElementById('liveToast');
+            if (toastEl) {
+                var toast = new bootstrap.Toast(toastEl);
+                toast.show();
+            }
+        });
+
         $(document).ready(function() {
             $("#tableSearch").on("keyup", function() {
                 var value = $(this).val().toLowerCase();
