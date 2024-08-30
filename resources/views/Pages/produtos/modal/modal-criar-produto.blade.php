@@ -48,8 +48,8 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="categoria" class="fw-semibold">Categoria</label>
-                        <select class="form-control" name="categoria" id="categoria">
+                        <label for="categoria_id" class="fw-semibold">Categoria</label>
+                        <select class="form-control" name="categoria_id" id="categoria_id">
                             @foreach ($categorias as $item)
                                 <option value="{{ $item->id }}">{{ $item->nome }}</option>
                             @endforeach
