@@ -22,3 +22,6 @@ Route::delete('/clientes/{id}', [ClienteController::class, 'destroy'])->name('cl
 Route::put('/clientes/{id}', [ClienteController::class, 'update'])->name('clientes.update');
 
 Route::get('/categorias', [CategoriaController::class, 'index'])->name('categorias.index');
+Route::post('/categorias', [CategoriaController::class, 'store'])->name('categorias.store');
+Route::put('/categorias/{id}', [CategoriaController::class, 'update'])->name('categorias.update');
+Route::delete('/categorias/{id}', [CategoriaController::class, 'destroy'])->name('categorias.destroy');
