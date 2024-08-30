@@ -12,6 +12,12 @@ class ProdutoController extends Controller
     {
         $categorias = Categoria::all();
         $mensagemSucesso = $request->session()->get("mensagem.sucesso");
+
+        if (session()->has('produtos')) {
+            $produtos = $request->session()->get('produtos');
+            return view('pages.produtos.index')->with("mensagemSucesso", $mensagemSucesso)->with('produtos', $produtos)->with("categorias", $categorias);
+        }
+
         $produtos = Produto::paginate(10);
         return view('pages.produtos.index')->with("mensagemSucesso", $mensagemSucesso)->with('produtos', $produtos)->with("categorias", $categorias);
     }
@@ -19,7 +25,7 @@ class ProdutoController extends Controller
     public function store(Request $request)
     {
         $produto = Produto::create($request->all());
-        return to_route('produtos.index')->with('mensagem.sucesso', "Produto {$produto->nome} criado com sucesso!!");
+        return to_route('produtos.index')->with('mensagem.sucesso', "Produto:{$produto->nome} criado com sucesso!!");
     }
 
     public function update(Request $request, $id)
@@ -71,9 +77,6 @@ class ProdutoController extends Controller
         $categorias = Categoria::all();
         $mensagemSucesso = "Produtos filtrados com sucesso!";
 
-        return view('pages.produtos.index')
-            ->with('mensagemSucesso', $mensagemSucesso)
-            ->with('produtos', $produtos)
-            ->with('categorias', $categorias);
+        return to_route('produtos.index')->with('mensagem.sucesso', $mensagemSucesso)->with('produtos', $produtos);
     }
 }

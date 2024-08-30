@@ -47,7 +47,9 @@
                         <select class="form-control" name="categoria" id="categoria">
                             <option value="" selected disabled>Selecione uma categoria</option>
                             @foreach ($categorias as $item)
-                                <option value="{{ $item->id }}">{{ $item->nome }}</option>
+                                @if ($item->status != 0)
+                                    <option value="{{ $item->id }}">{{ $item->nome }}</option>
+                                @endif
                             @endforeach
                         </select>
                     </div>
