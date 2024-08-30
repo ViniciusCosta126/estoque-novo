@@ -1,11 +1,64 @@
 <x-layout title="Produtos">
     <div class="mt-4">
         @isset($mensagemSucesso)
-            <div class="alert alert-success">
-                {{ $mensagemSucesso }}
+            <div class="toast-container position-fixed bottom-0 end-0 p-3">
+                <div id="liveToast" class="toast text-bg-success" role="alert" aria-live="assertive" aria-atomic="true">
+                    <div class="toast-header text-bg-success">
+                        <strong class="me-auto">Nova mensagem do sistema</strong>
+                        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                    </div>
+                    <div class="toast-body">
+                        {{ $mensagemSucesso }}
+                    </div>
+                </div>
             </div>
         @endisset
-        <h2 class="h1">Produtos</h2>
+        <div class="d-flex align-items-center ">
+            <h2 class="h1">Produtos</h2>
+            <a href="#" class="dropdown-toggle ms-4 nav-link col-md-10" data-bs-toggle="dropdown"
+                id="navbarDropdownMenuLink2">
+                <i class="fa-solid fa-filter"></i>
+            </a>
+            <ul class="dropdown-menu p-3" aria-labelledby="navbarDropdownMenuLink2">
+                <h5>Filtros</h5>
+                <form action="{{ route('produtos.filter') }}" method="POST">
+                    @csrf
+                    <div class="form-group mb-2">
+                        <label for="" class="fw-semibold">Preço de custo</label>
+                        <div class="row g-2">
+                            <input placeholder="minimo..." class="col form-control me-2" type="number"
+                                name="preco_custo_min" id="preco_custo_min" step="0.01">
+                            <input placeholder="maximo..." class="col form-control" type="number"
+                                name="preco_custo_max" id="preco_custo_max" step="0.01">
+                        </div>
+                    </div>
+                    <div class="form-group mb-2">
+                        <label for="" class="fw-semibold">Preço</label>
+                        <div class="row g-2">
+                            <input placeholder="minimo..." class="col form-control me-2" type="number" name="preco_min"
+                                id="preco_min" step="0.01">
+                            <input placeholder="maximo..." class="col form-control" type="number" name="preco_max"
+                                id="preco_max" step="0.01">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="categoria" class="fw-semibold">Categoria</label>
+                        <select class="form-control" name="categoria" id="categoria">
+                            <option value="" selected disabled>Selecione uma categoria</option>
+                            @foreach ($categorias as $item)
+                                @if ($item->status != 0)
+                                    <option value="{{ $item->id }}">{{ $item->nome }}</option>
+                                @endif
+                            @endforeach
+                        </select>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary mt-2">Pesquisar</button>
+                </form>
+            </ul>
+        </div>
+
         <button class="btn btn-success mb-2 col-md-2" data-bs-toggle="modal" data-bs-target="#criarProduto">Incluir novo
             Produto
         </button>
@@ -71,6 +124,14 @@
     </div>
 
     <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var toastEl = document.getElementById('liveToast');
+            if (toastEl) {
+                var toast = new bootstrap.Toast(toastEl);
+                toast.show();
+            }
+        });
+
         $(document).ready(function() {
             $("#tableSearch").on("keyup", function() {
                 var value = $(this).val().toLowerCase();
