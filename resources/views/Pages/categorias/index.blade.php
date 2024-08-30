@@ -6,9 +6,7 @@
             </div>
         @endisset
         <h2 class="h1">Categorias</h2>
-        <button class="btn btn-success mb-2 col-md-2" data-bs-toggle="modal" data-bs-target="#criarCategoria">Incluir nova
-            Categoria
-        </button>
+
         <div class="card table-responsive shaddow h-100 w-75">
             <table class="table">
                 <thead class="table-dark">
@@ -32,11 +30,10 @@
                             <td>{{ $item->status == 1 ? 'ativo' : 'inativo' }}</td>
                             <td class="d-flex">
                                 <button type="button" class="btn btn-warning" data-bs-toggle="modal"
-                                    data-bs-target="#editModal{{ $item->id }}">
+                                    data-bs-target="#editModal1">
                                     <i class="fa-regular fa-pen-to-square"></i>
                                 </button>
-                                <form action="{{ route('categorias.destroy', $item->id) }}" method="POST"
-                                    class="ms-1">
+                                <form action="" method="POST" class="ms-1">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-danger"><i
@@ -44,9 +41,6 @@
                                 </form>
                             </td>
                         </tr>
-                        @include('Pages.categorias.modal.modal-editar-categoria', [
-                            'categoria' => $item,
-                        ])
                     @endforeach
                 </tbody>
             </table>
@@ -54,6 +48,5 @@
                 {{ $categorias->links('pagination::bootstrap-5') }}
             </div>
         </div>
-        @include('Pages.categorias.modal.modal-criar-categoria')
     </div>
 </x-layout>
