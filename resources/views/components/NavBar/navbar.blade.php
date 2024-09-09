@@ -1,6 +1,6 @@
 <div class="sidebar close bg-dark text-white">
     <div class="logo-details">
-        <i class='bx bxl-c-plus-plus'></i>
+        <i class="fa-solid fa-spider"></i>
         <span class="logo_name">SharkSuite</span>
     </div>
     <ul class="nav-links">

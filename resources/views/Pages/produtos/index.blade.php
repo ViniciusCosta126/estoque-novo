@@ -1,17 +1,19 @@
 <x-layout title="Produtos">
     <div class="mt-4">
         @isset($mensagemSucesso)
-            <div class="toast-container position-fixed bottom-0 end-0 p-3">
-                <div id="liveToast" class="toast text-bg-success" role="alert" aria-live="assertive" aria-atomic="true">
-                    <div class="toast-header text-bg-success">
-                        <strong class="me-auto">Nova mensagem do sistema</strong>
-                        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-                    </div>
-                    <div class="toast-body">
-                        {{ $mensagemSucesso }}
+            @if (!empty($mensagemSucesso))
+                <div class="toast-container position-fixed bottom-0 end-0 p-3">
+                    <div id="liveToast" class="toast text-bg-success" role="alert" aria-live="assertive" aria-atomic="true">
+                        <div class="toast-header text-bg-success">
+                            <strong class="me-auto">Nova mensagem do sistema</strong>
+                            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                        </div>
+                        <div class="toast-body">
+                            {{ $mensagemSucesso }}
+                        </div>
                     </div>
                 </div>
-            </div>
+            @endif
         @endisset
         <div class="d-flex align-items-center ">
             <h2 class="h1">Produtos</h2>
@@ -59,9 +61,9 @@
             </ul>
         </div>
 
-        <button class="btn btn-success mb-2 col-md-2" data-bs-toggle="modal" data-bs-target="#criarProduto">Incluir novo
+        <a class="btn btn-success mb-2 col-md-2" href="{{ route('produtos.create') }}">Incluir novo
             Produto
-        </button>
+        </a>
         <input class="form-control mb-2" id="tableSearch" type="text" placeholder="Buscar na Tabela pelo nome">
         <div class="table-responsive card shadow" style="height: 85%">
             <table class="table">
@@ -120,7 +122,6 @@
                 {{ $produtos->links('pagination::bootstrap-5') }}
             </div>
         </div>
-        @include('Pages.produtos.modal.modal-criar-produto', ['categorias', $categorias])
     </div>
 
     <script>

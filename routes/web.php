@@ -11,10 +11,11 @@ Route::get('/', function () {
 
 //Rotas de produtos
 Route::get('/produtos', [ProdutoController::class, 'index'])->name('produtos.index');
-Route::post('/produtos', [ProdutoController::class, 'store'])->name('produtos.store');
+Route::get('/produtos/create', [ProdutoController::class, 'createProduct'])->name('produtos.create');
+Route::post('/produtos/create', [ProdutoController::class, 'store'])->name('produtos.store');
 Route::delete('/produtos/{id}', [ProdutoController::class, 'destroy'])->name('produtos.destroy');
 Route::put('/produtos/{id}', [ProdutoController::class, 'update'])->name('produtos.update');
-Route::post('/produtos/filter', [ProdutoController::class, 'filterProducts'])->name('produtos.filter');
+Route::post('/produtos', [ProdutoController::class, 'filterProducts'])->name('produtos.filter');
 
 
 Route::get('/clientes', [ClienteController::class, 'index'])->name('clientes.index');
