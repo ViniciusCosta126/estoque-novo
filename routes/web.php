@@ -19,7 +19,9 @@ Route::post('/produtos', [ProdutoController::class, 'filterProducts'])->name('pr
 
 
 Route::get('/clientes', [ClienteController::class, 'index'])->name('clientes.index');
-Route::post('/clientes', [ClienteController::class, 'store'])->name('clientes.store');
+Route::post('/clientes', [ClienteController::class, 'filterCliente'])->name('clientes.filter');
+Route::get('/clientes/create', [ClienteController::class, 'createCliente'])->name('clientes.create');
+Route::post('/clientes/create', [ClienteController::class, 'store'])->name('clientes.store');
 Route::delete('/clientes/{id}', [ClienteController::class, 'destroy'])->name('clientes.destroy');
 Route::put('/clientes/{id}', [ClienteController::class, 'update'])->name('clientes.update');
 

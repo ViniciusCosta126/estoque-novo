@@ -13,9 +13,48 @@
                 </div>
             </div>
         @endisset
-        <h2 class="h1">Clientes</h2>
-        <button class="btn btn-success mb-2 col-md-2" data-bs-toggle="modal" data-bs-target="#criarCliente">Incluir
-            Cliente</button>
+        <div class="d-flex align-items-center ">
+            <h2 class="h1 text-capitalize">clientes</h2>
+            <a href="#" class="dropdown-toggle ms-4 nav-link col-md-12" data-bs-toggle="dropdown"
+                id="navbarDropdownMenuLink2">
+                <i class="fa-solid fa-filter"></i>
+            </a>
+            <ul class="dropdown-menu p-3" aria-labelledby="navbarDropdownMenuLink2">
+                <h5>Filtros</h5>
+                <form action="{{ route('clientes.filter') }}" method="POST" class="col-md-12">
+                    @csrf
+                    <div class="row">
+                        <div class="form-group mb-2 col-md-6">
+                            <label class="fw-semibold" for="nome">Nome cliente</label>
+                            <input class="form-control" type="text" name="nome" id="nome">
+                        </div>
+                        <div class="form-group mb-2 col-md-6">
+                            <label class="fw-semibold" for="cpf">Cpf cliente</label>
+                            <input class="form-control" type="text" name="cpf" id="cpf">
+                        </div>
+                    </div>
+
+                    <div class="form-group mb-2 ">
+                        <label class="fw-semibold" for="telefone">Telefone cliente</label>
+                        <input class="form-control" type="text" name="telefone" id="telefone">
+                    </div>
+
+                    <div class="form-group mb-2 ">
+                        <label class="fw-semibold" for="email">Email cliente</label>
+                        <input class="form-control" type="text" name="email" id="email">
+                    </div>
+
+                    <div class="form-group mb-2">
+                        <label class="fw-semibold" for="endereco">Endereco cliente</label>
+                        <input class="form-control" type="text" name="endereco" id="endereco">
+                    </div>
+
+                    <button type="submit" class="btn btn-primary mt-2">Pesquisar</button>
+                </form>
+            </ul>
+        </div>
+        <a href="{{ route('clientes.create') }}" class="btn btn-success mb-2 col-md-2">Incluir
+            Cliente</a>
         <input class="form-control mb-2" id="tableSearch" type="text" placeholder="Buscar na Tabela pelo nome">
         <div class="card table-responsive shadow " style="height: 85%">
             <table class="table  min-vw-100">
@@ -65,7 +104,6 @@
                 {{ $clientes->links('pagination::bootstrap-5') }}
             </div>
         </div>
-        @include('Pages.clientes.modal.modal-criar-cliente')
     </div>
 
     <script>
