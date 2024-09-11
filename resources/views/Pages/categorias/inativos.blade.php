@@ -1,4 +1,4 @@
-<x-layout title="Categorias">
+<x-layout title="Categorias Inativas">
     <div class="mt-4">
         @isset($mensagemSucesso)
             <div class="toast-container position-fixed bottom-0 end-0 p-3">
@@ -13,11 +13,8 @@
                 </div>
             </div>
         @endisset
-        <h2 class="h1">Categorias</h2>
-        <button class="btn btn-success mb-2 col-md-2" data-bs-toggle="modal" data-bs-target="#criarCategoria">Incluir
-            nova
-            Categoria
-        </button>
+        <h2 class="h1 mb-2">Categorias Inativas</h2>
+
         <div class="card table-responsive shaddow h-100 w-75">
             <table class="table">
                 <thead class="table-dark">
@@ -63,18 +60,6 @@
                 {{ $categorias->links('pagination::bootstrap-5') }}
             </div>
         </div>
-
-        <a class="btn btn-danger mt-2" href="{{ route('categorias.inativa') }}">Inativas</a>
         @include('Pages.categorias.modal.modal-criar-categoria')
     </div>
 </x-layout>
-
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        var toastEl = document.getElementById('liveToast');
-        if (toastEl) {
-            var toast = new bootstrap.Toast(toastEl);
-            toast.show();
-        }
-    });
-</script>

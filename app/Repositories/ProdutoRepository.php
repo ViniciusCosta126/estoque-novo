@@ -16,7 +16,8 @@ class ProdutoRepository
         $this->model = new Produto();
     }
 
-    public function all(){
+    public function all()
+    {
         $categorias = Categoria::all();
         $produtos = Produto::paginate(10);
         $dados = array(
@@ -25,24 +26,32 @@ class ProdutoRepository
         );
         return $dados;
     }
+    public function allCategories()
+    {
+        $categorias = Categoria::all();
+        return $categorias;
+    }
     public function create(array $payload)
     {
         return Produto::create($payload);;
     }
 
-    public function update(array $payload, $id){
+    public function update(array $payload, $id)
+    {
         $produto = Produto::find($id);
         $produto->fill($payload);
         $produto->save();
         return $produto;
     }
 
-    public function delete($id){
+    public function delete($id)
+    {
         $produto = Produto::find($id);
         $produto->delete();
     }
 
-    public function filterProducts($payload){
+    public function filterProducts($payload)
+    {
         $produtos = Produto::query();
         $request = $payload->all();
         if (!empty($request->preco_max) && !empty($request->preco_min)) {
@@ -72,10 +81,9 @@ class ProdutoRepository
         $produtos = $produtos->paginate(10)->appends($payload->except('page'));
         $mensagemSucesso = "Produtos filtrados com sucesso!";
         $dados = array(
-            "produtos"=>$produtos,
-            "mensagemSucesso"=>$mensagemSucesso
+            "produtos" => $produtos,
+            "mensagemSucesso" => $mensagemSucesso
         );
         return $dados;
     }
-
 }

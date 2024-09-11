@@ -36,7 +36,7 @@ class ProdutoController extends Controller
 
     public function createProduct()
     {
-        $categorias = [];
+        $categorias = $this->repository->allCategories();
         return view('pages.produtos.create')->with('categorias', $categorias);
     }
 

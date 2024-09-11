@@ -3,34 +3,47 @@
 namespace App\Http\Controllers;
 
 use App\Models\Categoria;
+use App\Repositories\CategoriaRepository;
 use Illuminate\Http\Request;
 
 class CategoriaController extends Controller
 {
+
+    private $repository;
+    public function __construct(CategoriaRepository $repository)
+    {
+        $this->repository = $repository;
+    }
     public function index(Request $request)
     {
-        $mensagemSucesso = $request->session()->get("mensagem.sucesso");
-        $categorias = Categoria::paginate(10);
-        return view('Pages.categorias.index')->with("categorias", $categorias)->with('mensagemSucesso', $mensagemSucesso);
+        $categorias = $this->repository->all();
+        if ($request->session()->has('mensagem.sucesso')) {
+            $mensagemSucesso = $request->session()->get("mensagem.sucesso");
+            return view('Pages.categorias.index')->with("categorias", $categorias)->with('mensagemSucesso', $mensagemSucesso);
+        }
+
+        return view('Pages.categorias.index')->with("categorias", $categorias);
     }
 
+    public function getInativos()
+    {
+        $categorias = $this->repository->getInativos();
+        return view('Pages.categorias.inativos')->with("categorias", $categorias);
+    }
     public function store(Request $request)
     {
-        $categoria = Categoria::create($request->all());
-        return to_route('categorias.index')->with('mensagem.sucesso', "Categoria: $categoria->nome criado com sucesso!");
+        $categoria = $this->repository->create($request);
+        return to_route('categorias.index')->with('mensagem.sucesso', $categoria);
     }
 
     public function update(Request $request, $id)
     {
-        $categoria = Categoria::find($id);
-        $categoria->fill($request->all());
-        $categoria->save();
+        $this->repository->update($request, $id);
         return to_route('categorias.index')->with("mensagem.sucesso", "Categoria atualizada com sucesso!");
     }
     public function destroy($id)
     {
-        $categoria = Categoria::find($id);
-        $categoria->delete();
+        $this->repository->destroy($id);
         return to_route('categorias.index')->with("mensagem.sucesso", "Categoria excluida com sucesso!");
     }
 }
