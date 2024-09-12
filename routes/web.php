@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\ClienteController;
+use App\Http\Controllers\OrcamentoController;
 use App\Http\Controllers\ProdutoController;
 use Illuminate\Support\Facades\Route;
 
@@ -30,3 +31,6 @@ Route::get('/categorias/inativas', [CategoriaController::class, 'getInativos'])-
 Route::post('/categorias', [CategoriaController::class, 'store'])->name('categorias.store');
 Route::put('/categorias/{id}', [CategoriaController::class, 'update'])->name('categorias.update');
 Route::delete('/categorias/{id}', [CategoriaController::class, 'destroy'])->name('categorias.destroy');
+
+Route::get('/orcamentos', [OrcamentoController::class, 'index'])->name('orcamentos.index');
+Route::get('/orcamentos/create', [OrcamentoController::class, 'create'])->name('orcamentos.create');

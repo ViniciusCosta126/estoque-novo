@@ -24,4 +24,11 @@ class Produto extends Model
     {
         return $this->belongsTo(Categoria::class);
     }
+
+    public function orcamentos()
+    {
+        return $this->belongsToMany(Orcamento::class)
+            ->withPivot('quantidade', 'preco_unitario', 'subtotal')
+            ->withTimestamps();
+    }
 }

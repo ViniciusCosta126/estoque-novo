@@ -10,4 +10,9 @@ class Cliente extends Model
     use HasFactory;
 
     protected $fillable = ['nome', 'telefone', 'endereco', 'numero_endereco', 'complemento', 'email', 'cpf'];
+
+    public function orcamentos()
+    {
+        return $this->hasMany(Orcamento::class);
+    }
 }

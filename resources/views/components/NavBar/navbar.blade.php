@@ -25,6 +25,7 @@
                 <li><a class="" href="{{ route('produtos.index') }}">Produtos</a></li>
                 <li><a class="" href="{{ route('clientes.index') }}">Clientes</a></li>
                 <li><a class="" href="{{ route('categorias.index') }}">Categorias</a></li>
+                <li><a class="" href="{{ route('orcamentos.index') }}">Orçamentos</a></li>
             </ul>
         </li>
 
